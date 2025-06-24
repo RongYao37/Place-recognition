@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PlaceRecognition</string>
+    <string name="gallery">Gallery</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="confirm">Confirm</string>
+    <string name="back">Back</string>
+    <string name="find_location">Find Location</string>
+</resources>
