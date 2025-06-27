@@ -1,0 +1,9 @@
+{
+  "predicted_latitude": 40.758896,
+  "predicted_longitude": -73.985130,
+  "confidence_score": 0.89,
+  "place_name": "Times Square",
+  "city": "New York",
+  "country": "USA",
+  "processing_time_ms": 245.7
+}
