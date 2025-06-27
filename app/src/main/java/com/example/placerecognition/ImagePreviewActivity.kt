@@ -23,7 +23,7 @@ class ImagePreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_preview)
 
-        previewImage = findViewById(R.id.previewImage)
+        previewImage = findViewById(R.id.previewImageView)
         backButton = findViewById(R.id.backButton)
         findLocationButton = findViewById(R.id.findLocationButton)
 
