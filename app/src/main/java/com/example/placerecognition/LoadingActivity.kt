@@ -9,10 +9,17 @@ class LoadingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
-        // Simulate loading for 2 seconds (2000 ms)
+
+        // ✅ Get the image URI passed in
+        val imageUri = intent.getStringExtra(ImagePreviewActivity.EXTRA_IMAGE_URI)
+
         Handler(Looper.getMainLooper()).postDelayed({
-            // After loading, start MainActivity
-            startActivity(Intent(this, LocationResultActivity::class.java))
+            val intent = Intent(this, LocationResultActivity::class.java)
+
+            // ✅ Pass it forward using the same key!
+            intent.putExtra(ImagePreviewActivity.EXTRA_IMAGE_URI, imageUri)
+
+            startActivity(intent)
             finish()
         }, 2000)
     }

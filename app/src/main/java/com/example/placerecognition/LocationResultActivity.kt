@@ -3,6 +3,7 @@ package com.example.placerecognition
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import com.google.gson.Gson
 import com.bumptech.glide.Glide
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +13,6 @@ import android.widget.TextView
 
 class LocationResultActivity : AppCompatActivity() {
 
-    private lateinit var btnGallery: Button
-    private lateinit var btnTakePicture: Button
     private lateinit var btnFindAnother: Button
     private lateinit var btnViewGallery: Button
 
@@ -28,10 +27,6 @@ class LocationResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_result)
 
-        // header buttons
-        btnGallery      = findViewById(R.id.btnGallery)
-        btnTakePicture  = findViewById(R.id.btnTakePicture)
-
         // content views
         previewImage      = findViewById(R.id.previewImage)
         placeNameTv       = findViewById(R.id.placeName)
@@ -43,14 +38,6 @@ class LocationResultActivity : AppCompatActivity() {
         // footer buttons
         btnFindAnother  = findViewById(R.id.btnFindAnother)
         btnViewGallery  = findViewById(R.id.btnViewGallery)
-
-        // 1) header nav
-        btnGallery.setOnClickListener {
-            startActivity(Intent(this, GalleryActivity::class.java))
-        }
-        btnTakePicture.setOnClickListener {
-            startActivity(Intent(this, CameraActivity::class.java))
-        }
 
         // 2) show the passed image
         intent.getStringExtra(ImagePreviewActivity.EXTRA_IMAGE_URI)
@@ -88,5 +75,15 @@ class LocationResultActivity : AppCompatActivity() {
         confidenceTv.text     = "Confidence: ${(r.confidenceScore * 100).toInt()}%"
         cityCountryTv.text    = "City/Country: ${r.city}, ${r.country}"
         processingTimeTv.text = "Processed in: ${"%.1f".format(r.processingTimeMs)} ms"
+    }
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN
+                    )
+        }
     }
 }
